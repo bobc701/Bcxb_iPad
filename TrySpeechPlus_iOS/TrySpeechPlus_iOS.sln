@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BcxB", "TrySpeechPlus\BcxB.csproj", "{760E5B56-A586-4505-A4C1-8A0355DA7DFF}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "BcxbLib_SAP", "..\..\..\BcxbLib_SAP\BcxbLib_SAP_b1_cteam\BcxbLib_SAP.shproj", "{F4A628C7-5F7F-4B62-AD11-85A58328A825}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\..\..\BcxbLib_SAP\BcxbLib_SAP_b1_cteam\BcxbLib_SAP.projitems*{f4a628c7-5f7f-4b62-ad11-85a58328a825}*SharedItemsImports = 13
+		..\..\..\BcxbLib_SAP\BcxbLib_SAP_b1_cteam\BcxbLib_SAP.projitems*{760e5b56-a586-4505-a4c1-8a0355da7dff}*SharedItemsImports = 4
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|iPhone = Debug|iPhone
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|Any CPU = Release|Any CPU
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{760E5B56-A586-4505-A4C1-8A0355DA7DFF}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{760E5B56-A586-4505-A4C1-8A0355DA7DFF}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{760E5B56-A586-4505-A4C1-8A0355DA7DFF}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{760E5B56-A586-4505-A4C1-8A0355DA7DFF}.Debug|iPhone.Build.0 = Debug|iPhone
+		{760E5B56-A586-4505-A4C1-8A0355DA7DFF}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{760E5B56-A586-4505-A4C1-8A0355DA7DFF}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{760E5B56-A586-4505-A4C1-8A0355DA7DFF}.Release|Any CPU.ActiveCfg = Release|iPhone
+		{760E5B56-A586-4505-A4C1-8A0355DA7DFF}.Release|Any CPU.Build.0 = Release|iPhone
+		{760E5B56-A586-4505-A4C1-8A0355DA7DFF}.Release|iPhone.ActiveCfg = Release|iPhone
+		{760E5B56-A586-4505-A4C1-8A0355DA7DFF}.Release|iPhone.Build.0 = Release|iPhone
+		{760E5B56-A586-4505-A4C1-8A0355DA7DFF}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{760E5B56-A586-4505-A4C1-8A0355DA7DFF}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

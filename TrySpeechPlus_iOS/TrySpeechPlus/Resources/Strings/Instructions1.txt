@@ -1,0 +1,5 @@
+Tap a player on the left, then tap a button on the right. When the lineup change appears in red, tap 'Make the Change'. The actual change is made when you click 'Make the Change'.
+
+During 'pre-game', you can use ‘Move Up’ and ‘Move Down’ to rearrange the batting order. (You don't need to tap 'Make the Change!' for 'Move Up' and 'Move Down'.) Players replaced during pre-game will still be be available later for pinch hitting, etc.
+
+You can make more than one lineup change at a time. When you're finished, tap 'Done'.

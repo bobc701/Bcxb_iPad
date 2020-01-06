@@ -1,0 +1,119 @@
+﻿9/14'19
+Updated for reading on-line team data.
+Search: --1909.01
+
+7/7'19
+This is prodection version just prior to making changes to the on-line
+team retrieval.
+This does not work, because I already made changes to BcxbLib_SAP (for BcxbXf).
+
+3/19'19
+Working pretty good.
+Who has 11 elts, PosLim returns 9 or 10 dep on UsingDh.
+Got rid of whoDh.
+Hiding labels on field diagram at start of game.
+Release candidate?
+
+3/19'19
+Still in middle of overhauling lineup card logic.
+I am about to start changing who to length 11 (so DH is 10). (This saved as _Bkp1)
+
+3/14'19
+Still in middle of overhauling lineup card logic.
+I am about to limit Available list to all, pitchers, or non-pitchers.
+Also will change who to [11] (ie, 0..10 i/o 0..9).
+
+3/12'19
+The throws have been relocated to the high level, ie, CLineupCardController.
+
+3/4'19
+This version is mid-changes to the line up card.
+This has throw's in low level (CLineupCard.ReplacePlayer() and AssignPos())
+but I need to have the exception logic at high level instead, works
+better, LineupCardController - cmdDoIt.TUI.
+
+1/24'19
+I implimented a button on the About page to launch Safari with zeemerix.com.
+Next: Organize the About page as both About and Help.
+
+1/22'19
+I added tan color to the menu buttons, and implimented the About screen.
+
+1/22'19
+I enhanced the launch screen with color, rounded corners, etc.
+Next up: Experiment with colors in main menu buttons, add About screen.
+
+_b2 1/15'19...
+This is working with all the constraints coded, tested on simulator for iPad 9.7, 10.5, and 12.1.
+Also, code to position disk1 on the main screen, based on View.Center.X & .Y
+Fixed so 'Drill down' not eneabled on 'Start'.
+Changed pitcher box column label to be "hr" i/o "so"
+Box score grids need a little more size tweeking.
+Need to test on device.
+
+#1812.01
+Fixed problem of out balls not appearing. Solution involves adding
+new image sets under the asset catalog "Images" (which already existed).
+I called the new image sets RedBall and WhtBall. The to assign the red ball
+or the white ball to the UIImage controll's Image property, you do:
+   lblOuts1.Image = mGame.ok > 0 ? UIImage.FromBundle("RedBall") : UIImage.FromBundle("WhtBall");
+
+#1706.27
+Fixed the problem with fielding wheel not displaying labels.
+As byproduct of the fix, wedge ladels now appear on the fielding wheel.
+Changed 'Details' button to 'Drill Down'.
+Some changes in BcxbLib for this.
+(This is documented in EverNote. See #1706.27a/b.)
+
+
+#1706.23
+Got linescore working for extra innings.
+-- Inning numbers above innings
+-- Left & right shift buttons if innings > 12.
+-- Etc. (I believe all changes are on the UI side, in ViewController.cs.)
+
+
+11/22-16
+I made the changes needed to support the new CTeam. This is 
+a 2-elt array of CTeam, in CGame.
+I minimally tested it w/ iPhone simulator for Windows -- it runs!
+
+
+Note: See 'Bcxb feature tags' in OneNote.
+
+
+#1604.03
+I moved Voice.Speak into the new results loop.
+
+2016-04-29:
+Now I have done the unification.
+Project conditional compilation symbols include "IOS", which is applied to BcxbLib_SAP as well.
+I made changes for 1604.02, box score updates from a List<>.
+
+2016-04-29:
+This is just before unification with the common BcxbLib_SAP, which has been 
+modified for #1604.02, box score updates uning List of objects. 
+So before the unified project can be used, must modify for that.
+
+
+2015-12-07:
+Have worked around programmatic unwind segue, and now have implemented 
+and tested pinch hitting (#1512.01), have done code for pinch running, but not debugged/tested
+yet.
+
+2015-12-02:
+In middle of revising LineupCard & Available screens so that Alert is not used,
+Rather the description of the action is posted on a label and user clicks DoIt!, which
+does the adjustments then calls the unwind segue.
+
+2015-11-24:
+Have decided that lineupCard object needs to be moved back from CLineupcardSource back
+into LineupCardController, because it's not just the UITableView that needs it -- the 
+buttons for pinch hit, etc., need it too.
+BUT HAVE NOT DONE IT YET.
+
+#1510.01 -- Play-by-play in a queue
+To get around sequencing of events, I modified to put play-by-play in a List<string> 
+and play it back all at once.
+
+

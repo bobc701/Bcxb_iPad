@@ -1,0 +1,10 @@
+Fielders are rated at each of their positions
+as follows:
+
+   6 — Gold glove quality at the position
+   5 — All Star quality at the position
+   4 — Above average among starters at the position
+   3 — Average among starters at the position
+   2 — Below average among starters at the position
+   1 — Major defensive liability at the position
+   0 or not rated — Not qualified to play the position

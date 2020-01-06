@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{760E5B56-A586-4505-A4C1-8A0355DA7DFF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>TrySpeechPlus</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>PlayByPlay</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;__UNIFIED__;__MOBILE__;__IOS__;IOS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>True</MtouchDebug>
+    <MtouchFastDev>True</MtouchFastDev>
+    <MtouchProfiling>False</MtouchProfiling>
+    <MtouchUseLlvm>False</MtouchUseLlvm>
+    <MtouchUseThumb>False</MtouchUseThumb>
+    <MtouchEnableBitcode>False</MtouchEnableBitcode>
+    <OptimizePNGs>True</OptimizePNGs>
+    <MtouchFloat32>False</MtouchFloat32>
+    <MtouchSdkVersion>12.1</MtouchSdkVersion>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <CodesignKey>iPhone Developer: Robert Clemens (WK5Q9P6NPL)</CodesignKey>
+    <IOSDebugOverWiFi>False</IOSDebugOverWiFi>
+    <IOSDebuggerPort>10000</IOSDebuggerPort>
+    <CodesignProvision>Zeemerix Profile 2</CodesignProvision>
+    <CodesignExtraArgs />
+    <CodesignResourceRules />
+    <CodesignEntitlements />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;IOS</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;IOS</DefineConstants>
+    <CodesignKey>iPhone Developer: Robert Clemens (WK5Q9P6NPL)</CodesignKey>
+    <CodesignProvision>Zeemerix Profile 2</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;__UNIFIED__;__MOBILE__;__IOS__;IOS;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer: Robert Clemens (WK5Q9P6NPL)</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignProvision>Zeemerix Profile 2</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <AppExtensionDebugBundleId />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="Calabash">
+      <HintPath>..\packages\Xamarin.TestCloud.Agent.0.13.0\lib\Xamarin.iOS10\Calabash.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Diamond2_152_152.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Diamond2_167_167.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Diamond2_20_20.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Diamond2_29_29.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Diamond2_40_40.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Diamond2_40_401.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Diamond2_58_58.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Diamond2_76_76.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Diamond2_80_80.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\RedBall.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\WhtBall.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\RedBall.imageset\redball2.PNG">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\RedBall.imageset\redball21.PNG">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\RedBall.imageset\redball22.PNG">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\WhtBall.imageset\whtball2.PNG">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\WhtBall.imageset\whtball21.PNG">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\WhtBall.imageset\whtball22.PNG">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Diamond2_76_76.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\BcxbLaunch1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
+    <InterfaceDefinition Include="Main.storyboard">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+    <None Include="Comments\Comments.txt" />
+    <BundleResource Include="Resources\zeemerix3.png" />
+    <BundleResource Include="Resources\Strings\Fielding1.txt" />
+    <BundleResource Include="Resources\Strings\Instructions1.txt" />
+    <BundleResource Include="Resources\Teams\AL2018.bcxl" />
+    <BundleResource Include="Resources\Teams\BOS2018.bcxt" />
+    <BundleResource Include="Resources\Teams\HOU2018.bcxt" />
+    <BundleResource Include="Resources\Teams\LAN2018.bcxt" />
+    <BundleResource Include="Resources\Teams\MIL2018.bcxt" />
+    <BundleResource Include="Resources\Teams\NL2018.bcxl" />
+    <None Include="Info.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Form-SpecialPlays\SpecialPlaysController.cs" />
+    <Compile Include="Form-SpecialPlays\SpecialPlaysController.designer.cs">
+      <DependentUpon>SpecialPlaysController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityClasses\CActivityIndicator.cs" />
+    <Compile Include="ViewController.cs" />
+    <Compile Include="ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GFileAccess.cs" />
+    <Compile Include="BoxScores\CBoxScoreLine_B.cs" />
+    <Compile Include="BoxScores\CBoxScoreLine_P.cs" />
+    <Compile Include="BoxScores\CBoxScoreSource.cs" />
+    <Compile Include="BoxScores\CSectionHeader_B.cs" />
+    <Compile Include="Form-Teams\PickTeamsController.cs" />
+    <Compile Include="Form-Teams\PickTeamsController.designer.cs">
+      <DependentUpon>PickTeamsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form-ProfileDisks\TryDrawController.cs" />
+    <Compile Include="Form-ProfileDisks\TryDrawController.designer.cs">
+      <DependentUpon>TryDrawController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form-ProfileDisks\GProfileDisk.cs" />
+    <Compile Include="Speech\CTextToSpeach.cs" />
+    <Compile Include="Form-LineupCard\LineupCardController.cs" />
+    <Compile Include="Form-LineupCard\LineupCardController.designer.cs">
+      <DependentUpon>LineupCardController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form-LineupCard\CLineupCardSource.cs" />
+    <Compile Include="Form-LineupCard\CLineupCardCell.cs" />
+    <Compile Include="Form-Available\AvailableController.cs" />
+    <Compile Include="Form-Available\AvailableController.designer.cs">
+      <DependentUpon>AvailableController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form-Available\CAvailableSource.cs" />
+    <Compile Include="Form-Available\CAvailableCell.cs" />
+    <Compile Include="UtilityClasses\CSimplePicker.cs" />
+    <Compile Include="Form-LineupCard\CSectionHeader_Lineup.cs" />
+    <Compile Include="Form-Available\CSectionHeader_Avail.cs" />
+    <Compile Include="Form-Options\OptionsController.cs" />
+    <Compile Include="Form-Options\OptionsController.designer.cs">
+      <DependentUpon>OptionsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityClasses\COkAlert.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <BundleResource Include="Resources\CyanLight.bmp" />
+    <BundleResource Include="Resources\Diamond2_32_24.ico" />
+    <BundleResource Include="Resources\GreyLight.bmp" />
+    <BundleResource Include="Resources\info2.PNG" />
+    <BundleResource Include="Resources\test9.PNG" />
+    <BundleResource Include="Resources\ball3.bmp" />
+    <BundleResource Include="Resources\DiskKey2.PNG" />
+    <BundleResource Include="Resources\Model\cfeng1.bcx" />
+    <BundleResource Include="Resources\Model\cfeng2.bcx" />
+    <BundleResource Include="Resources\Model\cfeng3.bcx" />
+    <BundleResource Include="Resources\Model\CFlistNames.txt" />
+    <BundleResource Include="Images\redball2.PNG" />
+    <BundleResource Include="Images\whtball2.PNG" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <TextStylePolicy TabsToSpaces="True" RemoveTrailingWhitespace="True" NoTabsAfterNonTabs="False" FileWidth="120" TabWidth="3" IndentWidth="3" EolMarker="Unix" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-csharp" />
+          <CSharpFormattingPolicy IndentBlock="True" IndentBraces="False" IndentSwitchSection="False" IndentSwitchCaseSection="True" LabelPositioning="OneLess" NewLinesForBracesInTypes="True" NewLinesForBracesInMethods="True" NewLinesForBracesInProperties="False" NewLinesForBracesInAccessors="False" NewLinesForBracesInAnonymousMethods="False" NewLinesForBracesInControlBlocks="False" NewLinesForBracesInAnonymousTypes="False" NewLinesForBracesInObjectCollectionArrayInitializers="False" NewLinesForBracesInLambdaExpressionBody="False" NewLineForElse="False" NewLineForCatch="False" NewLineForFinally="False" NewLineForMembersInObjectInit="False" NewLineForMembersInAnonymousTypes="False" NewLineForClausesInQuery="False" SpacingAfterMethodDeclarationName="True" SpaceWithinMethodDeclarationParenthesis="False" SpaceBetweenEmptyMethodDeclarationParentheses="False" SpaceAfterMethodCallName="True" SpaceWithinMethodCallParentheses="False" SpaceBetweenEmptyMethodCallParentheses="False" SpaceAfterControlFlowStatementKeyword="True" SpaceWithinExpressionParentheses="False" SpaceWithinCastParentheses="False" SpaceWithinOtherParentheses="False" SpaceAfterCast="False" SpacesIgnoreAroundVariableDeclaration="False" SpaceBeforeOpenSquareBracket="True" SpaceBetweenEmptySquareBrackets="False" SpaceWithinSquareBrackets="False" SpaceAfterColonInBaseTypeDeclaration="True" SpaceAfterComma="True" SpaceAfterDot="False" SpaceAfterSemicolonsInForStatement="True" SpaceBeforeColonInBaseTypeDeclaration="True" SpaceBeforeComma="False" SpaceBeforeDot="False" SpaceBeforeSemicolonsInForStatement="False" SpacingAroundBinaryOperator="Single" WrappingPreserveSingleLine="True" WrappingKeepStatementsOnSingleLine="True" PlaceSystemDirectiveFirst="True" inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+    <Folder Include="Form-SetSkill\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\redball2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\whtball2.PNG" />
+  </ItemGroup>
+  <Import Project="..\..\..\..\BcxbLib_SAP\BcxbLib_SAP_b1_cteam\BcxbLib_SAP.projitems" Label="Shared" />
+</Project>
