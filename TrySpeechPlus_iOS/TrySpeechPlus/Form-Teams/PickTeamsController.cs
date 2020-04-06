@@ -26,7 +26,7 @@ namespace BCX.BCXB
       {
          // ---------------------------------------------------------
          //leagueList = new List<string> { "NL2014", "AL2014", "NL2015", "AL2015" };
-         leagueList = GFileAccess.GetLeagueList ();
+         leagueList = GFileAccess.GetLeagueList();
       }
 
 

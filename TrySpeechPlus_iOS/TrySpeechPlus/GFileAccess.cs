@@ -263,7 +263,6 @@ namespace BCX.BCXCommon {
             }
             return list;
          }
-
          catch (Exception ex) {
             string msg = "Error getting list of available leagues: \r\n" + ex.Message;
             throw new Exception(msg);
@@ -276,7 +275,7 @@ namespace BCX.BCXCommon {
          // ---------------------------------------------------------------
          //WebClient client = new WebClient(); 
          string path = "";
-         path = @"http://www.4bcx.com/BcxbTeams/" + fName + ".txt";
+         path = @"https://www.zeemerixdata.com/BcxbTeams/" + fName + ".txt";
 
          // ----------------------------------------------------
          // Found this approach on Web.
@@ -284,6 +283,7 @@ namespace BCX.BCXCommon {
          // to set the timeout period.
          // HttpWebRequest --> HttpWebResponse --> Stream --> StreamReader
          // ----------------------------------------------------
+
          HttpWebRequest request = (HttpWebRequest)WebRequest.Create(path);
          request.Timeout = 15000;
          request.ReadWriteTimeout = 15000;
@@ -292,7 +292,6 @@ namespace BCX.BCXCommon {
          var f = new StreamReader(resp.GetResponseStream());
          string s = f.ReadToEnd();
          return new StringReader(s);
-
       }
 
 

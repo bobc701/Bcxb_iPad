@@ -4,7 +4,6 @@ using System.CodeDom.Compiler;
 using System.IO;
 using UIKit;
 using BCX.BCXCommon;
-using System.Threading.Tasks;
 
 namespace BCX.BCXB {
 
@@ -105,7 +104,6 @@ public partial class LineupCardController : UIViewController {
 
          string msg;
 
-
          switch (fAvail.operation.type) {
             case 'h':
                // Pinch hit...
@@ -168,8 +166,6 @@ public partial class LineupCardController : UIViewController {
                break;
 
          }
-
-         await ShowAlert("Testing", "Just returned from segue", this, 0, 0);
 
       }
 
@@ -243,11 +239,11 @@ public partial class LineupCardController : UIViewController {
       }
 
 
-      private async Task<int> ShowAlert(string title, string msg, UIViewController ctlr, int x, int y) {
-      // -------------------------------------------------------------------
+      private void ShowAlert(string title, string msg, UIViewController ctlr, int x, int y) {
+         // -------------------------------------------------------------------
          var alertController = UIAlertController.Create("Pinch Hitting", msg, UIAlertControllerStyle.Alert);
          if (alertController.PopoverPresentationController != null) {
-            alertController.PopoverPresentationController.SourceView = ctlr.View;  
+            alertController.PopoverPresentationController.SourceView = ctlr.View;
             alertController.PopoverPresentationController.SourceRect = ctlr.View.Bounds;
          }
          //alertController.AddAction(UIAlertAction.Create("Yes", UIAlertActionStyle.Default, alert => {
@@ -266,7 +262,6 @@ public partial class LineupCardController : UIViewController {
          alertController.AddAction(UIAlertAction.Create("No", UIAlertActionStyle.Cancel, NoAction));
          ctlr.PresentViewController(alertController, true, null);
 
-         return 0;
       }
 
 
@@ -405,6 +400,7 @@ public partial class LineupCardController : UIViewController {
       // ------------------------------------------------------
          int ix = SelectedRow; 
          if (ix == 0) return; //Can't move #1 batter up.
+         if (ix == 9) return; //Can't move non-batting pitcher.
          int bx = lineupCard.CurrentLineup[ix].bx;
          lineupCard.MovePlayerUpDown(bx, -1); //-1 is up
          lineupCard.SetLineupCard();
@@ -418,6 +414,7 @@ public partial class LineupCardController : UIViewController {
       // ------------------------------------------------------
          int ix = SelectedRow; 
          if (ix == 8) return; //Can't move #9 batter down.
+         if (ix == 9) return; //Can't move non-batting pitcher.
          int bx = lineupCard.CurrentLineup[ix].bx;
          lineupCard.MovePlayerUpDown(bx, 1); //+1 is down
          lineupCard.SetLineupCard();

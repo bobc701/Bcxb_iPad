@@ -16,7 +16,7 @@ namespace TrySpeechPlus
 
       partial void cmdHelp_TouchUpInside(UIButton sender) {
 
-         UIApplication.SharedApplication.OpenUrl(new NSUrl("http://www.zeemerix.com/baseball_ios/help/default.html"));
+         UIApplication.SharedApplication.OpenUrl(new NSUrl("http://www.zeemerixdata.com/baseball_ios/help/default.html"));
 
       }
 

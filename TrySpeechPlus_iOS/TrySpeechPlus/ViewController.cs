@@ -549,8 +549,13 @@ namespace BCX.BCXB {
 
          else if (segue.Identifier == "PickTeamsSegue") {
             // ---------------------------------------------
-            var pickTeamsController = segue.DestinationViewController as PickTeamsController; 
-            pickTeamsController.selectedTeams = selectedTeams; //When user clicks 'Done' on PickTeams, this comes back filled.
+            try {
+               var pickTeamsController = segue.DestinationViewController as PickTeamsController;
+               pickTeamsController.selectedTeams = selectedTeams; //When user clicks 'Done' on PickTeams, this comes back filled.
+            }
+            catch (Exception ex) {
+               CAlert.ShowOkAlert("Error", "Error reading data from the Internet: " + ex.Message, "OK", this);
+            }
          } 
 
          else if (segue.Identifier == "LineupCardSegueV") {

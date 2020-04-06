@@ -18,7 +18,7 @@ namespace BCX.BCXB {
       // ---------------------------------------------------------------------
 
          SelectionStyle = UITableViewCellSelectionStyle.Gray;
-         ContentView.BackgroundColor = UIColor.White;
+         //ContentView.BackgroundColor = UIColor.White;
 
          string fontName = "Arial";
          nfloat fontSize = 15f;
@@ -26,8 +26,8 @@ namespace BCX.BCXB {
          lblName = new UILabel () {
             Font = UIFont.FromName(fontName, fontSize), 
             TextColor = UIColor.Black,
-            TextAlignment = UITextAlignment.Left,
-            BackgroundColor = UIColor.White
+            TextAlignment = UITextAlignment.Left
+            //BackgroundColor = UIColor.White
          };
          lblSlot = new UILabel () {
             Font = UIFont.FromName(fontName, fontSize),
@@ -38,20 +38,20 @@ namespace BCX.BCXB {
          lblPos = new UILabel () { 
             Font = UIFont.FromName(fontName, fontSize),
             TextColor = UIColor.Black,
-            TextAlignment = UITextAlignment.Center,
-            BackgroundColor = UIColor.White
+            TextAlignment = UITextAlignment.Center
+            //BackgroundColor = UIColor.White
          };
          lblBase = new UILabel () {
             Font = UIFont.FromName(fontName, fontSize),
             TextColor = UIColor.Black,
-            TextAlignment = UITextAlignment.Center,
-            BackgroundColor = UIColor.White
+            TextAlignment = UITextAlignment.Center
+            //BackgroundColor = UIColor.White
          };
          lblSkill = new UILabel () {
             Font = UIFont.FromName(fontName, fontSize),
             TextColor = UIColor.Black,
-            TextAlignment = UITextAlignment.Left,
-            BackgroundColor = UIColor.White
+            TextAlignment = UITextAlignment.Left
+            //BackgroundColor = UIColor.White
          };
 
          ContentView.AddSubviews(new UIView[] {

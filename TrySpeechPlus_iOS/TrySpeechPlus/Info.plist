@@ -5,7 +5,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.zeemerix.playbyplay</string>
 	<key>CFBundleVersion</key>
-	<string>1100</string>
+	<string>1101</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -37,12 +37,14 @@
 	<key>CFBundleDisplayName</key>
 	<string>PlayByPlay</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.00</string>
+	<string>1.1.04</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>XSAppIconAssets</key>
 	<string>Images.xcassets/AppIcons.appiconset</string>
-	<key>UIRequiresFullScreen</key>
+  <key>UIUserInterfaceStyle</key>
+  <string>Light</string>
+  <key>UIRequiresFullScreen</key>
 	<true/>
 </dict>
 </plist>
