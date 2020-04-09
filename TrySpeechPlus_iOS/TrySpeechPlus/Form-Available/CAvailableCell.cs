@@ -17,20 +17,20 @@ namespace BCX.BCXB
       // ---------------------------------------------------------------------
 
          SelectionStyle = UITableViewCellSelectionStyle.Gray;
-         ContentView.BackgroundColor = UIColor.White;
+         //ContentView.BackgroundColor = UIColor.White;
          nfloat fontSize = 18f;
 
          lblName = new UILabel () {
             Font = UIFont.FromName("Arial", fontSize), 
             TextColor = UIColor.Black,
             TextAlignment = UITextAlignment.Left,
-            BackgroundColor = UIColor.White
+            //BackgroundColor = UIColor.White
          };
          lblSkill = new UILabel () {
             Font = UIFont.FromName("Arial", fontSize), 
             TextColor = UIColor.Black,
             TextAlignment = UITextAlignment.Left,
-            BackgroundColor = UIColor.White
+            //BackgroundColor = UIColor.White
          };
 
          ContentView.AddSubviews(new UIView[] {

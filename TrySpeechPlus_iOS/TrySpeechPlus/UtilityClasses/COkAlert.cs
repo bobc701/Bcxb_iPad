@@ -65,6 +65,7 @@ namespace BCX.BCXCommon
          if (alert.PopoverPresentationController != null) {
             alert.PopoverPresentationController.SourceView = ctlr.View;
             //alert.PopoverPresentationController.SourceRect = ctlr.View.Bounds;
+            alert.PopoverPresentationController.SourceRect = new System.Drawing.RectangleF(300F, 50F, 10F, 10F); //See EN tag #200409.1
          } 
          for (int i = 0; i < labels.Length; i++) 
             alert.AddAction(UIAlertAction.Create(labels[i], UIAlertActionStyle.Default, actions[i]));

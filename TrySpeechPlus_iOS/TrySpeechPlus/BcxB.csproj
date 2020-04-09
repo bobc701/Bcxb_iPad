@@ -50,9 +50,9 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Distribution: Robert Clemens (7B2Q2QFBAK)</CodesignKey>
+    <CodesignKey>Apple Distribution: Bob Clemens (7B2Q2QFBAK)</CodesignKey>
     <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;IOS</DefineConstants>
-    <CodesignProvision>Zeemerix Distrib 1</CodesignProvision>
+    <CodesignProvision>Zeemerix Dist Profile 3</CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />
     <BuildIpa>true</BuildIpa>
