@@ -11,20 +11,14 @@
 <filter exclude="yes">*.zip</filter>
 <filter exclude="yes">*lahman*.mdb</filter>
 <filter exclude="yes">*.pdb</filter>
-<item exclude="no" recurse="yes">C:\prj\BCX\BCXBWinPrj\BcxbLib_SAP\BcxbLib_SAP_b1_cteam\</item>
-<item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\BcxbLib_SAP\BcxbLib_SAP_b1_cteam\.git\</item>
-<item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\BcxbLib_SAP\BcxbLib_SAP_b1_cteam\.vs\</item>
-<item exclude="no" recurse="yes">C:\prj\BCX\BCXBWinPrj\Working_iOS\CSApp_IOS_b2\</item>
-<item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\Working_iOS\CSApp_IOS_b2\.git\</item>
-<item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\Working_iOS\CSApp_IOS_b2\TrySpeechPlus_iOS\.vs\</item>
-<item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\Working_iOS\CSApp_IOS_b2\TrySpeechPlus_iOS\TrySpeechPlus.UITests\</item>
-<item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\Working_iOS\CSApp_IOS_b2\TrySpeechPlus_iOS\TrySpeechPlus\bin\</item>
-<item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\Working_iOS\CSApp_IOS_b2\TrySpeechPlus_iOS\TrySpeechPlus\obj\</item>
-<item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\Working_iOS\CSApp_IOS_b2\TrySpeechPlus_iOS_obs_beforeCTeam\</item>
+<item exclude="no" recurse="yes">C:\prj\BCX\BCXBWinPrj\Working_iOS\Bcxb_iPad_PAID\</item>
+<item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\Working_iOS\Bcxb_iPad_PAID\TrySpeechPlus_iOS\TrySpeechPlus.UITests\</item>
+<item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\Working_iOS\Bcxb_iPad_PAID\TrySpeechPlus_iOS\TrySpeechPlus\bin\</item>
+<item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\Working_iOS\Bcxb_iPad_PAID\TrySpeechPlus_iOS\TrySpeechPlus\obj\</item>
 </items>
 <output>
-<name append="dateyyyy">Prj-BCX-iOS_b2-.zip</name>
-<folder append="none">C:\WinzipJobs\WinzipArchives\</folder>
+<name append="dateyyyy">Prj-BCX-iOS_PAID-.zip</name>
+<folder append="none">C:\WinzipArchives\</folder>
 <log type="full" overwrite="yes">&lt;zipfolder&gt;</log>
 </output>
 <options>
