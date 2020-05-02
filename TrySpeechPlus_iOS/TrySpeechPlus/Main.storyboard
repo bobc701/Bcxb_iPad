@@ -2109,7 +2109,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.1.04, Build 1101" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49189">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 9.9.99, Build 9999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49189">
                                 <rect key="frame" x="237.5" y="972.5" width="359" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="49214"/>
@@ -2118,6 +2118,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES"/>
+                                </accessibility>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196078431372548" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2139,6 +2142,7 @@
                     <connections>
                         <outlet property="cmdHelp" destination="35554" id="name-outlet-35554"/>
                         <outlet property="cmdVisitSite" destination="48307" id="name-outlet-48307"/>
+                        <outlet property="lblVersion" destination="49189" id="name-outlet-49189"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="24067" userLabel="First Responder" sceneMemberID="firstResponder"/>

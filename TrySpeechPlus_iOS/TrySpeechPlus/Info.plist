@@ -37,14 +37,14 @@
 	<key>CFBundleDisplayName</key>
 	<string>PlayByPlay</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.04</string>
+	<string>1.1.03</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>XSAppIconAssets</key>
 	<string>Images.xcassets/AppIcons.appiconset</string>
-  <key>UIUserInterfaceStyle</key>
-  <string>Light</string>
-  <key>UIRequiresFullScreen</key>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
+	<key>UIRequiresFullScreen</key>
 	<true/>
 </dict>
 </plist>

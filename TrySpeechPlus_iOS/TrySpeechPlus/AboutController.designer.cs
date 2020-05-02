@@ -22,6 +22,10 @@ namespace TrySpeechPlus
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton cmdVisitSite { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblVersion { get; set; }
+
         [Action ("cmdHelp_TouchUpInside:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void cmdHelp_TouchUpInside (UIKit.UIButton sender);
@@ -40,6 +44,11 @@ namespace TrySpeechPlus
             if (cmdVisitSite != null) {
                 cmdVisitSite.Dispose ();
                 cmdVisitSite = null;
+            }
+
+            if (lblVersion != null) {
+                lblVersion.Dispose ();
+                lblVersion = null;
             }
         }
     }

@@ -10,6 +10,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using CoreGraphics;
 
+using Xamarin.Essentials;
+
 
 namespace BCX.BCXB {
    
@@ -52,6 +54,7 @@ namespace BCX.BCXB {
 			// Perform any additional setup after loading the view, typically from a nib.
 
 			var tts = new CTextToSpeach ();
+         VersionTracking.Track(); //#2004.01 Version tracking with Xamarin.Essentials
 
 
          GFileAccess.SetFolders( 
