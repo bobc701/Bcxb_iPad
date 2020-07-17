@@ -6,11 +6,7 @@ using System.Text;
 using System.IO;
 using System.Diagnostics;
 using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using BCX.BCXB;
-using System.Linq;
+
 
 namespace BCX.BCXCommon {
 
@@ -34,15 +30,11 @@ namespace BCX.BCXCommon {
       private static string OrgName = "Zeemerix";
       private static string ProductName = "Zeemerix Baseball";
 
-   // Use httpS here as I have added SSL cert to Z.com on WinHost (7/15'20)...
-      private static HttpClient client = new HttpClient() { BaseAddress = new Uri("https://www.zeemerix.com") };
-      private static List<CTeamRecord> TeamCache = new List<CTeamRecord>();
-
 
 #if IOS
       public static void SetFolders(string appRoot1, string docFolder1) {
-         // ----------------------------------------------------------------
-         // These need to be passed in since not available to the library...
+      // ----------------------------------------------------------------
+      // These need to be passed in since not available to the library...
          appRoot = appRoot1;
          docFolder = docFolder1;
 
@@ -50,14 +42,14 @@ namespace BCX.BCXCommon {
          // For IOS...
 
          TeamFolder = Path.Combine(appRoot, "Teams");
-         if (!Directory.Exists(TeamFolder))
-            throw new Exception(TeamFolder + " does not exists. Reinstall " + ProductName);
+         if (!Directory.Exists(TeamFolder)) 
+            throw new Exception (TeamFolder + " does not exists. Reinstall " + ProductName);
 
          ModelFolder = Path.Combine(appRoot, "Model");
-         if (!Directory.Exists(ModelFolder))
-            throw new Exception(ModelFolder + " does not exists. Reinstall " + ProductName);
-
-         // Results folder may or may not exist, so create it not...
+         if (!Directory.Exists(ModelFolder)) 
+            throw new Exception (ModelFolder + " does not exists. Reinstall " + ProductName);
+ 
+      // Results folder may or may not exist, so create it not...
          ResultsFolder = Path.Combine(docFolder, "Results");
          try {
             if (!File.Exists(ResultsFolder)) Directory.CreateDirectory(ResultsFolder);
@@ -66,13 +58,13 @@ namespace BCX.BCXCommon {
             string msg =
                "Could not create folder: " + ResultsFolder + "\r\n" +
                "Error: " + ex.Message;
-            throw new Exception(msg);
+            throw new Exception (msg);
          }
       }
 
 #endif
 
-
+    
 #if WINDOWS
 
       public static void SetFolders() {
@@ -115,9 +107,9 @@ namespace BCX.BCXCommon {
 
 
       public static StreamReader GetModelFile(short engNum) {
-         // ------------------------------------------------------------------
-         // This returns a file object for CFEng1,2 oe 3.
-         // ------------------------------------------------------------------
+      // ------------------------------------------------------------------
+      // This returns a file object for CFEng1,2 oe 3.
+      // ------------------------------------------------------------------
          string path1 = Path.Combine(ModelFolder, "cfeng[1].bcx");
          try {
             path1 = path1.Replace("[1]", engNum.ToString());
@@ -128,16 +120,16 @@ namespace BCX.BCXCommon {
             string msg = "Could not open " + path1 + "\r\nError: " + ex.Message;
             throw new Exception(msg);
          }
-
+         
       }
-
-
+   
+ 
       /// <summary>
       /// This serves up a file object for a team file, for reading, with bcxt extention
       /// </summary>
       /// ------------------------------------------------------------------------------
       public static StreamReader GetTeamFileReader(string fileName) {
-
+     
          string path1 = Path.Combine(TeamFolder, fileName + ".bcxt");
          try {
             if (!File.Exists(path1)) return null;
@@ -148,7 +140,7 @@ namespace BCX.BCXCommon {
             string msg = "Could not open " + path1 + " for reading/r/nError: " + ex.Message;
             throw new Exception(msg);
          }
-
+      
       }
 
 
@@ -160,7 +152,7 @@ namespace BCX.BCXCommon {
       /// </summary>
       /// ------------------------------------------------------------------------------
       public static StreamReader GetOtherFileReader(string fileName) {
-
+     
          string path1 = Path.Combine(appRoot, fileName);
          try {
             if (!File.Exists(path1)) return null;
@@ -171,9 +163,9 @@ namespace BCX.BCXCommon {
             string msg = "Could not open " + path1 + " for reading/r/nError: " + ex.Message;
             throw new Exception(msg);
          }
-
+      
       }
-
+      
 
       /// <summary>
       /// Checks if a team file is installed on user's computer.
@@ -181,7 +173,7 @@ namespace BCX.BCXCommon {
       /// </summary>
       /// 
       public static bool TeamFileInstalled(string fileName) {
-         // ----------------------------------------------------
+      // ----------------------------------------------------
          string path1 = Path.Combine(TeamFolder, fileName + ".bcxt");
          return (File.Exists(path1));
 
@@ -193,10 +185,10 @@ namespace BCX.BCXCommon {
       /// </summary>
       ///
       public static StreamWriter GetTeamFileWriter(string fileName) {
-
+     
          string path1 = Path.Combine(TeamFolder, fileName + ".bcxt");
          try {
-            var f = new StreamWriter(path1, append: false);
+            var f = new StreamWriter(path1, append:false);
             return f;
          }
          catch (Exception ex) {
@@ -207,12 +199,17 @@ namespace BCX.BCXCommon {
       }
 
 
+      // --1909.01 Changes for team data on web.
+      // These 3 methods added, replacing earlier...
+
       public static List<CTeamRecord> GetTeamsInLeague(string league1, out bool dh) {
-         // -------------------------------------------------------------------------
+      // ---------------------------------------------------------------------------
          string rec;
          var teamList = new List<CTeamRecord>();
-         try {
-            using (StringReader f = GetTextFileOnLine(league1 + ".bcxl")) {
+         try
+         {
+            using (StringReader f = GetTextFileOnLine(league1 + ".bcxl"))
+            {
                //StreamReader f = GetTextFileOnLine(path1); 
 
                rec = f.ReadLine(); //Skip version #   
@@ -222,7 +219,8 @@ namespace BCX.BCXCommon {
                dh = rec.Substring(rec.Length - 1, 1) == "1"; //Last char is DH
 
                // Read remaining lines getting list of teams...
-               while ((rec = f.ReadLine()) != null) {
+               while ((rec = f.ReadLine()) != null)
+               {
                   if (rec == "END") break;
                   var a = rec.Split(',');
                   // We only want to add the team to the list if the user has the file
@@ -231,7 +229,8 @@ namespace BCX.BCXCommon {
                   // Update: for on-line version, we don't have to worry, can assume the files
                   // are there...
                   //if (GFileAccess.TeamFileIsInstalled(a[0]))
-                  teamList.Add(new CTeamRecord() {
+                  teamList.Add(new CTeamRecord()
+                  {
                      TeamTag = a[0],
                      LineName = a[1],
                      City = a[2],
@@ -243,8 +242,9 @@ namespace BCX.BCXCommon {
             }
             return teamList;
          }
-         catch (Exception ex) {
-            string msg = $"Error getting teams in league, {league1}, from zeeemerix.com" + "\r\n" + ex.Message;
+         catch (Exception ex)
+         {
+            string msg = "Error getting teams in league: " + league1 + "\r\n" + ex.Message;
             throw new Exception(msg);
 
 
@@ -252,8 +252,8 @@ namespace BCX.BCXCommon {
       }
 
 
-         public static List<string> GetLeagueList() {
-         // --------------------------------------------------------
+      public static List<string> GetLeagueList() {
+      // --------------------------------------------------------
          try {
             string rec;
             List<string> list = new List<string>();
@@ -263,32 +263,19 @@ namespace BCX.BCXCommon {
             }
             return list;
          }
-
          catch (Exception ex) {
-            string msg = "Error getting list of available leagues from zeemerixdata.com: \r\n" + ex.Message;
+            string msg = "Error getting list of available leagues: \r\n" + ex.Message;
             throw new Exception(msg);
          }
 
       }
 
 
-      public static List<string> GetYearList() {
-         // ---------------------------------------------------------
-         // For now, just return list from 2019 down to 1901.
-         // TODO: Enhance this to read the range from DB.
-         // ---------------------------------------------------------
-         IEnumerable<string> list = Enumerable.Range(1901, 119).Reverse().Select(y => y.ToString());
-         return list.ToList();
-
-      }
-
-
       public static StringReader GetTextFileOnLine(string fName) {
          // ---------------------------------------------------------------
-         // Changes for _LITE: separate path for lite, with just 4 teams files...
          //WebClient client = new WebClient(); 
          string path = "";
-         path = @"https://www.zeemerixdata.com/BcxbTeams_Lite/" + fName + ".txt";
+         path = @"https://www.zeemerixdata.com/BcxbTeams/" + fName + ".txt";
 
          // ----------------------------------------------------
          // Found this approach on Web.
@@ -296,6 +283,7 @@ namespace BCX.BCXCommon {
          // to set the timeout period.
          // HttpWebRequest --> HttpWebResponse --> Stream --> StreamReader
          // ----------------------------------------------------
+
          HttpWebRequest request = (HttpWebRequest)WebRequest.Create(path);
          request.Timeout = 15000;
          request.ReadWriteTimeout = 15000;
@@ -304,120 +292,21 @@ namespace BCX.BCXCommon {
          var f = new StreamReader(resp.GetResponseStream());
          string s = f.ReadToEnd();
          return new StringReader(s);
-
       }
 
 
-      public static async Task<DTO_TeamRoster> GetTeamRosterOnLine(string team, int year) {
-         // --------------------------------------------------------------------------------------
-         var url = new Uri(client.BaseAddress, $"liveteamrdr/api/team/{team}/{year}");
 
-         client.DefaultRequestHeaders.Accept.Clear();
-         client.DefaultRequestHeaders.Accept.Add(
-             new MediaTypeWithQualityHeaderValue("application/json"));
-
-         DTO_TeamRoster roster = null;
-         HttpResponseMessage response = await client.GetAsync(url.ToString());
-         if (response.IsSuccessStatusCode) {
-            roster = await response.Content.ReadAsAsync<DTO_TeamRoster>();
-         }
-         else {
-            roster = null;
-            throw new Exception($"Error loading team {team} for {year}");
-         }
-         return roster;
-
-      }
-
-      public static async Task<List<CTeamRecord>> GetTeamListForYearOnLine(int year) {
-         // --------------------------------------------------------------------------------------
-
-         //var t = new List<CTeamRecord> {
-         //   new CTeamRecord { TeamTag = "NYY2018", City = "New York", LineName = "NYY", NickName = "Yankees", UsesDh = true, LgID = "AL" },
-         //   new CTeamRecord { TeamTag = "NYM2018", City = "New York", LineName = "NYM", NickName = "Mets", UsesDh = false, LgID = "NL" },
-         //   new CTeamRecord { TeamTag = "BOS2015", City = "Boston", LineName = "Bos", NickName = "Red Sox", UsesDh = true, LgID = "AL" },
-         //   new CTeamRecord { TeamTag = "PHI2015", City = "Philadelphia", LineName = "Phi", NickName = "Phillies", UsesDh = false, LgID = "NL" },
-         //   new CTeamRecord { TeamTag = "WAS2019", City = "Washington", LineName = "Was", NickName = "Nationals", UsesDh = false, LgID = "NL" }
-         //};
-         //return t;
-
-      // Right here I could have logic that maintains a master list and refreshes by 10-year ranges.
-
-         var url = new Uri(client.BaseAddress, $"liveteamrdr/api/team-list/{year}/{year}");
-
-         client.DefaultRequestHeaders.Accept.Clear();
-         client.DefaultRequestHeaders.Accept.Add(
-               new MediaTypeWithQualityHeaderValue("application/json"));
-
-         List<CTeamRecord> teamList = null;
-         HttpResponseMessage response = await client.GetAsync(url.ToString());
-         if (response.IsSuccessStatusCode) {
-            teamList = await response.Content.ReadAsAsync<List<CTeamRecord>>();
-         }
-         else {
-            teamList = null;
-            throw new Exception($"Error loading list of teams for {year}");
-         }
-         return teamList;
-
-      }
-
-      public static async Task<List<CTeamRecord>> GetTeamListForYearFromCache(int year) {
-         // --------------------------------------------------------------------------------------
-         List<CTeamRecord> result;
-
-         result = TeamCache.Where(t => t.Year == year).ToList();
-         if (result.Count > 0) {
-            return result;
-         }
-         else {
-            // The year is not in the teamCache, 
-            // so, fetch 10 year block from DB and add to cache...
-            int year1 = 10 * (year / 10);
-            int year2 = year1 + 9;
-            var url = new Uri(client.BaseAddress, $"liveteamrdr/api/team-list/{year1}/{year2}");
-
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-                  new MediaTypeWithQualityHeaderValue("application/json"));
-
-            List<CTeamRecord> yearList10;
-            HttpResponseMessage response = await client.GetAsync(url.ToString());
-            if (response.IsSuccessStatusCode) {
-               yearList10 = await response.Content.ReadAsAsync<List<CTeamRecord>>();
-            }
-            else {
-               yearList10 = null;
-               throw new Exception($"Error loading list of teams for {year}");
-            }
-            TeamCache.AddRange(yearList10);
-
-            result = TeamCache.Where(t => t.Year == year).ToList();
-            return result;
-
-         }
-
-      }
-
-      public static void ClearTeamCache() {
-      // ----------------------------------------------------------
-         TeamCache.Clear();
-
-      }
 
    }
 
 
    public struct CTeamRecord {
-      // ---------------------------------------------------
-      public string TeamTag { get; set; }
-      public int Year { get; set; }
-      public string LineName { get; set; }
-      public string City { get; set; }
-      public string NickName { get; set; }
-      public bool UsesDh { get; set; }
-      public string LgID { get; set; }
+   // ---------------------------------------------------
+      public string TeamTag;
+      public string LineName;
+      public string City;
+      public string NickName;
+      public bool UsesDh;
    }
 
-   
 }

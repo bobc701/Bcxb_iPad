@@ -4,8 +4,6 @@
 <dict>
 	<key>CFBundleIdentifier</key>
 	<string>com.zeemerix.playbyplay</string>
-	<key>CFBundleVersion</key>
-	<string>1101</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -36,8 +34,6 @@
 	<string>Zeemerix Baseball</string>
 	<key>CFBundleDisplayName</key>
 	<string>PlayByPlay</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.1.03</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>XSAppIconAssets</key>
@@ -46,5 +42,9 @@
 	<string>Light</string>
 	<key>UIRequiresFullScreen</key>
 	<true/>
+	<key>CFBundleVersion</key>
+	<string>2001</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2.0.00</string>
 </dict>
 </plist>

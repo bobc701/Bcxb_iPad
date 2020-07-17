@@ -18,47 +18,25 @@ namespace BCX.BCXB
       // Output: selectedTeams filled with 2 (V & H) CTeamRecord's.
 
       public CTeamRecord [] selectedTeams; //This is supplied by the caller & is returned filled.
-      private List<string> yearList;
+      private List<string> leagueList;
       private CTeamRecord selectedTeam; //Need just 1 of these.
 
 
-      public PickTeamsController (IntPtr handle) : base (handle) {
+      public PickTeamsController (IntPtr handle) : base (handle)
+      {
          // ---------------------------------------------------------
          //leagueList = new List<string> { "NL2014", "AL2014", "NL2015", "AL2015" };
-         //leagueList = GFileAccess.GetLeagueList ();
-         yearList = GFileAccess.GetYearList();
-         activity1.Hidden = true;
-
+         leagueList = GFileAccess.GetLeagueList();
       }
 
 
-      public override void ViewDidLoad () {
-      // ----------------------------------
+      public override void ViewDidLoad ()
+      {
+         // ----------------------------------
          base.ViewDidLoad ();
          // Perform any additional setup after loading the view, typically from a nib.
-            SetupPicker();
-      
-      }
 
-
-      public override void ViewDidDisappear(bool animated) {
-      // ---------------------------------------------------------
-         base.ViewDidDisappear(animated);
-         GFileAccess.ClearTeamCache();
-
-      }
-
-      public void StartActivity() {
-
-         activity1.Hidden = false;
-         activity1.StartAnimating();
-      }
-
-
-      public void StopActivity() {
-
-         activity1.StopAnimating();
-         activity1.Hidden = true;
+         SetupPicker ();
 
       }
 
@@ -70,21 +48,21 @@ namespace BCX.BCXB
          // Set up picker and model...
          // Note: We need separate models for V & H because need to update
          // separate TextField's...
-         var modelBottomV = new CPickerModel (yearList, this);
-         var modelBottomH = new CPickerModel (yearList, this);
+         var modelBottomV = new CPickerModel (leagueList);
+         var modelBottomH = new CPickerModel (leagueList);
 
          // Instantiate the events with handlers...
          modelBottomV.PickerChanged += delegate (CTeamRecord t, bool valid) {
             selectedTeam = t;
             selectedTeams[0] = t;
-            txtTeamV.Text = valid ? $"{t.Year} {t.LineName} {t.NickName}" : "";
+            txtTeamV.Text = valid ? t.City : "";
             cmdDone.Enabled = (txtTeamV.Text != "" && txtTeamH.Text != "");
          };
 
          modelBottomH.PickerChanged += delegate (CTeamRecord t, bool valid) {
             selectedTeam = t;
             selectedTeams[1] = t;
-            txtTeamH.Text = valid ? $"{t.Year} {t.LineName} {t.NickName}" : "";
+            txtTeamH.Text = valid ? t.City : "";
             cmdDone.Enabled = (txtTeamV.Text != "" && txtTeamH.Text != "");
          };
 
@@ -111,7 +89,7 @@ namespace BCX.BCXB
          // Create 2 'Done' buttons and add them to respective toobar...
          var cmdDoneV = new UIBarButtonItem ("Done", UIBarButtonItemStyle.Done,
             (s, e) => {
-               this.txtTeamV.Text = $"{selectedTeam.Year} {selectedTeam.LineName} {selectedTeam.NickName}";
+               this.txtTeamV.Text = selectedTeam.City;
                this.selectedTeams[0] = selectedTeam;
                this.txtTeamV.ResignFirstResponder ();
             });
@@ -119,7 +97,7 @@ namespace BCX.BCXB
 
          var cmdDoneH = new UIBarButtonItem ("Done", UIBarButtonItemStyle.Done,
             (s, e) => {
-               this.txtTeamH.Text = $"{selectedTeam.Year} {selectedTeam.LineName} {selectedTeam.NickName}";
+               this.txtTeamH.Text = selectedTeam.City;
                this.selectedTeams[1] = selectedTeam;
                this.txtTeamH.ResignFirstResponder ();
             });
@@ -131,10 +109,8 @@ namespace BCX.BCXB
          this.txtTeamV.InputAccessoryView = tbV;
          this.txtTeamH.InputView = pickerBottomH;
          this.txtTeamH.InputAccessoryView = tbH;
-         
+
       }
-
-
 
    }
          
@@ -143,9 +119,8 @@ namespace BCX.BCXB
    // ---------------------------------------------------
 
          private bool usingDh;
-         List<string> yearList;
+         List<string> leagueList;
          List<CTeamRecord> teamList;
-         internal PickTeamsController ctlr;
 
          public event Action<CTeamRecord, bool> PickerChanged;
 
@@ -153,17 +128,16 @@ namespace BCX.BCXB
          // Constructors
          //
 
-         internal CPickerModel (List<string> yearList1, PickTeamsController ctlr1) {
+         public CPickerModel (List<string> leagueList1) {
          // --------------------------------------------
 
-            yearList = yearList1;
+            leagueList = leagueList1;
          ///teamList = GFileAccess.GetTeamsInLeague(leagueList[0], out usingDh); //, out usingDh);
            
-         // We start with an empty team list, user must pick a year first...
-         // Later, in the Selected method, for component 0 (year), 
-         // GetTeamsInYear will be called to generate an actual team list.
+         // We start with an empty team list, user must pick a league first...
+         // Later, in the Selected method, for component 0 (league), 
+         // GetTeamsInLeague will be called to generate an actual team list.
             teamList = new List<CTeamRecord>();
-            ctlr = ctlr1;
          }
 
          public CPickerModel () {
@@ -179,7 +153,7 @@ namespace BCX.BCXB
          public override nint GetRowsInComponent (UIPickerView picker, nint component) {
          // --------------------------------------------------------------------------
             switch (component) {
-               case 0: return yearList.Count+1; 
+               case 0: return leagueList.Count+1; 
                case 1: return teamList.Count+1;
                default: return 0;
             }
@@ -189,46 +163,34 @@ namespace BCX.BCXB
          // ----------------------------------------------------------------------------
             switch (component) {  
                case 0:
-                  if (row == 0) return "Choose year";
-                  else return yearList[(int)row-1];   
+                  if (row == 0) return "Choose league";
+                  else return leagueList[(int)row-1];   
                case 1:
                   if (row == 0) return "Choose team";
-                  else {
-                     CTeamRecord t = teamList[(int)row - 1];
-                     return $"{t.LgID} - {t.City} {t.NickName}";
-                  }
+                  else return teamList[(int)row-1].City;
                default: return null;   
             }  
 
          }
 
-         public async override void Selected (UIPickerView picker, nint row, nint component) {
+         public override void Selected (UIPickerView picker, nint row, nint component) {
          // ---------------------------------------------------------------------------
-            try {
-               ctlr.StartActivity();
-               switch (component) {
-                  case 0:
-                     if (row == 0)
-                        teamList.Clear();
-                     else {
-                        string yr = yearList[(int)row - 1];
-                        //teamList = GFileAccess.GetTeamsInLeague(s, out usingDh);
-                        teamList = await GFileAccess.GetTeamListForYearFromCache(int.Parse(yr));
-                     }
-                     picker.ReloadComponent(1);
-                     break;
-                  case 1:
-                     if (row == 0)
-                        PickerChanged(new CTeamRecord(), false);
-                     else
-                        PickerChanged(teamList[(int)row - 1], true);
-                     break;
-               }
-            ctlr.StopActivity();
-            }
-            catch (Exception ex) {
-            ctlr.StopActivity();
-               CAlert.ShowOkAlert("Error selecting year", ex.Message, "OK", ctlr);
+            switch (component) {
+               case 0:
+                  if (row == 0)
+                     teamList.Clear ();
+                  else {
+                     string s = leagueList[(int)row - 1];
+                     teamList = GFileAccess.GetTeamsInLeague (s, out usingDh);
+                  }  
+                  picker.ReloadComponent(1);
+                  break;  
+               case 1:
+                  if (row == 0) 
+                     PickerChanged (new CTeamRecord (), false);
+                  else
+                     PickerChanged(teamList[(int)row-1], true);
+                  break;
             }
          }
 

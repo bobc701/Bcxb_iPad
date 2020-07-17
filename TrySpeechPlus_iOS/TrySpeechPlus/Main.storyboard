@@ -1427,6 +1427,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Use These Teams">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.0392156862745098" green="0.37647058823529411" blue="1" alpha="1"/>
                                 </state>
                                 <connections>
                                     <segue destination="1869" kind="unwind" unwindAction="ReturnFromPickTeams:" id="3328"/>
@@ -1460,6 +1461,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="60030" fixedFrame="YES">
+                                <rect key="frame" x="358" y="625" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="contentStretch" y="0.0" width="1" height="1"/>
+                                <color key="color" systemColor="systemBlueColor" colorSpace="calibratedRGB" red="0" green="0.47843137254902" blue="1" alpha="1"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <variation key="default">
@@ -1477,6 +1484,7 @@
                         <outlet property="cmdDone" destination="1870" id="name-outlet-1870"/>
                         <outlet property="txtTeamH" destination="1863" id="name-outlet-1863"/>
                         <outlet property="txtTeamV" destination="1860" id="name-outlet-1860"/>
+                        <outlet property="activity1" destination="60030" id="name-outlet-60030"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="350" userLabel="First Responder" sceneMemberID="firstResponder"/>

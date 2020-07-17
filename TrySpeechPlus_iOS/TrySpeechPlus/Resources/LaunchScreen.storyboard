@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="ipad9_7" orientation="portrait" appearance="light" layout="fullscreen"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,26 +15,46 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3" image="zeemerix4.png" misplaced="YES">
-                                <rect key="frame" x="69" y="242" width="276" height="100"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zeemerix PlayByPlay Baseball" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7" adjustsFontForContentSizeCategory="YES" semanticContentAttribute="playback" numberOfLines="2" misplaced="YES">
-                                <rect key="frame" x="62" y="436" width="291" height="117"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zeemerix PlayByPlay Baseball" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7" adjustsFontForContentSizeCategory="YES" semanticContentAttribute="playback" numberOfLines="2" textAlignment="center" misplaced="YES">
+                                <rect key="frame" x="145" y="264" width="507" height="274"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="46"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.26666666666666666" green="0.82745098039215681" blue="0.40784313725490196" alpha="1"/>
                                 <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
+                                <constraints>
+                                    <constraint id="2770" firstAttribute="height" constant="274"/>
+                                    <constraint id="2771" firstAttribute="width" constant="507"/>
+                                </constraints>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lite" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1361" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                <rect key="frame" x="142" y="1058" width="131" height="70"/>
+                                <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="48"/>
+                                <nil key="highlightedColor"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="1" green="1" blue="0" alpha="1"/>
+                                <constraints>
+                                    <constraint id="1364" firstAttribute="height" constant="70"/>
+                                    <constraint id="1365" firstAttribute="width" constant="131"/>
+                                </constraints>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="2074" translatesAutoresizingMaskIntoConstraints="NO" image="victorino4.jpg" misplaced="YES">
+                                <rect key="frame" x="107" y="601" width="574" height="311"/>
+                                <constraints>
+                                    <constraint id="2784" firstAttribute="height" constant="311"/>
+                                    <constraint id="2785" firstAttribute="width" constant="574"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" customColorSpace="sRGB" colorSpace="calibratedRGB" red="0.13333333333333333" green="0.69411764705882351" blue="0.29803921568627451" alpha="1"/>
                         <constraints>
-                            <constraint id="663" firstItem="3" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX"/>
-                            <constraint id="664" firstAttribute="centerY" secondItem="3" secondAttribute="centerY" constant="76"/>
-                            <constraint id="665" firstItem="7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX"/>
-                            <constraint id="666" firstItem="7" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="126"/>
+                            <constraint id="1367" firstItem="1361" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX"/>
+                            <constraint id="1368" firstItem="1361" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="193"/>
+                            <constraint id="2768" firstItem="7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="11"/>
+                            <constraint id="2769" firstAttribute="centerY" secondItem="7" secondAttribute="centerY" constant="111"/>
+                            <constraint id="2772" firstItem="2074" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="11"/>
+                            <constraint id="2773" firstItem="2074" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="271"/>
                         </constraints>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -42,6 +63,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="zeemerix4.png" width="300" height="98"/>
+        <image name="victorino4.jpg" width="537" height="276"/>
     </resources>
+    <color key="tintColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
 </document>

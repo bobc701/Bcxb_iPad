@@ -10,10 +10,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using CoreGraphics;
 
-using Xamarin.Essentials; // #2004.01 Version tracking
-using System.Net.Http.Headers;
-using System.Net.Http;
-using System.Text;
+using Xamarin.Essentials;
+
 
 namespace BCX.BCXB {
    
@@ -56,7 +54,7 @@ namespace BCX.BCXB {
 			// Perform any additional setup after loading the view, typically from a nib.
 
 			var tts = new CTextToSpeach ();
-         VersionTracking.Track(); // #2004.01
+         VersionTracking.Track(); //#2004.01 Version tracking with Xamarin.Essentials
 
 
          GFileAccess.SetFolders( 
@@ -210,6 +208,7 @@ namespace BCX.BCXB {
 
          mGame.ERequestEngineFile += delegate (string fName) {
             // ------------------------------------------------------------------------
+            // Added '.bcx' due to change in CGame. (--1909.01 Changes for team data on web.)
             string enginePath = Path.Combine(GFileAccess.ModelFolder, fName.ToLower() + ".bcx");
             //string enginePath = @"Model\" + fName;
             if (!Directory.Exists(GFileAccess.ModelFolder)) throw new FileNotFoundException();
@@ -218,11 +217,12 @@ namespace BCX.BCXB {
             return rdr;
          };
 
-         mGame.ERequestTeamFileReader += delegate (string fName) {
-            // --------------------------------------------------------------------
-            var rdr = GFileAccess.GetTeamFileReader(fName);
-            return rdr;
-         };
+         // Out 1.1.02 -- Same as BcxbXf, CGame does not request this.
+         //mGame.ERequestTeamFileReader += delegate (string fName) {
+         //   // --------------------------------------------------------------------
+         //   var rdr = GFileAccess.GetTeamFileReader(fName);
+         //   return rdr;
+         //};
 
          mGame.ERequestTeamFileWriter += delegate (string fName) {
             // --------------------------------------------------------------------
@@ -552,8 +552,13 @@ namespace BCX.BCXB {
 
          else if (segue.Identifier == "PickTeamsSegue") {
             // ---------------------------------------------
-            var pickTeamsController = segue.DestinationViewController as PickTeamsController; 
-            pickTeamsController.selectedTeams = selectedTeams; //When user clicks 'Done' on PickTeams, this comes back filled.
+            try {
+               var pickTeamsController = segue.DestinationViewController as PickTeamsController;
+               pickTeamsController.selectedTeams = selectedTeams; //When user clicks 'Done' on PickTeams, this comes back filled.
+            }
+            catch (Exception ex) {
+               CAlert.ShowOkAlert("Error", "Error reading data from the Internet: " + ex.Message, "OK", this);
+            }
          } 
 
          else if (segue.Identifier == "LineupCardSegueV") {
@@ -614,7 +619,7 @@ namespace BCX.BCXB {
 
 
       [Action ("ReturnFromPickTeams:")]
-      public async void ReturnFromPickTeams(UIStoryboardSegue segue) {
+      public void ReturnFromPickTeams(UIStoryboardSegue segue) {
       // --------------------------------------------------------
          Console.WriteLine("We've returned from PickTeams!");
          Console.WriteLine("Vititing team: " + this.selectedTeams[0].TeamTag);
@@ -622,17 +627,11 @@ namespace BCX.BCXB {
          // Fill mGame here.
          // Question: Study CSApp -- what happens following FPickTeams???
 
-         //GFileAccess.ClearTeamCache(); // How to do this from PickTeamsController?
-         try {
-            txtResults.Text = "Loading player stats. Please wait...";
-            await SetupNewGame();
-            txtResults.Text =
-               "Tap 'Manage' buttons, above, to change starting lineups.\r\n" +
-               "When done, tap 'Start' below.";
-         }
-         catch (Exception ex) {
-            txtResults.Text = ex.Message;
-         }
+         SetupNewGame();
+         txtResults.Text =
+            "Tap 'Manage' buttons, above, to change starting lineups.\r\n" +
+            "When done, tap 'Start' below.";
+            
 
       }
 
@@ -739,17 +738,17 @@ namespace BCX.BCXB {
       }
 
 
-      private async Task SetupNewGame() {
+      private void SetupNewGame() {
       // --------------------------------------------------------
       // Have just returned from PickTeams, and have the selected teams
       // in selectedTeams[] which is array of CTeamRecord...
 
          string fName0, fName1;
-         fName0 = selectedTeams[0].TeamTag + selectedTeams[0].Year.ToString(); 
-         fName1 = selectedTeams[1].TeamTag + selectedTeams[1].Year.ToString();
+         fName0 = selectedTeams[0].TeamTag; 
+         fName1 = selectedTeams[1].TeamTag; 
          //mGame.UsingDh = selectedTeams[1].UsesDh; 
-
-         if ((fName0 ?? "") == "" || (fName1 ?? "") == "") return; // User did not pick.
+                
+         if ((fName0 ?? "") == "" || (fName1 ?? "") == "") return; //User did not pick.       
            
       // User has selected 2 teams for new game.
       // So set up the two CTeam objects for the 2 teams...
@@ -760,28 +759,35 @@ namespace BCX.BCXB {
          mGame.cmean = new CHittingParamSet(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
          mGame.PlayState = PLAY_STATE.START;
 
-
+      // ------------------------------------------------
+      // Section copied from BcxbXf for fetching from Web 
+      // --1909.01 Changes for team data on web.
+      // ------------------------------------------------
          try {
-            string tm = selectedTeams[1].TeamTag.Trim();
-            int yr = selectedTeams[1].Year;
-            DTO_TeamRoster ros = await GFileAccess.GetTeamRosterOnLine(tm, yr);
-            if (ros == null) throw new Exception($"Error: Could not load data for team, {fName1}");
-            mGame.t[1].ReadTeam(ros, 1);
+
+            using (StringReader f = GFileAccess.GetTextFileOnLine(fName1 + ".bcxt")) {
+               //using (StringReader f = (StringReader)mGame.GetTeamFileReader(newTeams[1])) {
+               mGame.t[1].ReadTeam(f, 1);
+               f.Close();
+            }
          }
          catch (Exception ex) {
-            throw new Exception($"Error loading data for team, {fName1}\r\n{ex.Message}");
+            string msg = "Error reading " + fName1 + " team data from Internet: \r\n" + ex.Message;
+            throw new Exception(msg);
          }
 
          try {
-            string tm = selectedTeams[0].TeamTag.Trim();
-            int yr = selectedTeams[0].Year;
-            DTO_TeamRoster ros = await GFileAccess.GetTeamRosterOnLine(tm, yr);
-            if (ros == null) throw new Exception($"Error: Could not load data for team, {fName0}");
-            mGame.t[0].ReadTeam(ros, 0);
+            using (StringReader f = GFileAccess.GetTextFileOnLine(fName0 + ".bcxt")) {
+               //using (StringReader f = (StringReader)mGame.GetTeamFileReader(newTeams[0])) {
+               mGame.t[0].ReadTeam(f, 0);
+               f.Close();
+            }
          }
          catch (Exception ex) {
-            throw new Exception($"Error loading data for team, {fName0}\r\n{ex.Message}");
+            string msg = "Error reading " + fName0 + " team data from Internet: \r\n" + ex.Message;
+            throw new Exception(msg);
          }
+      // ------------------------------------------------
 
 
          mGame.cmean.CombineLeagueMeans(mGame.t[0].lgMean, mGame.t[1].lgMean);
@@ -793,7 +799,6 @@ namespace BCX.BCXB {
          ShowRunners();
 
          EnableControls();
-
          //This seems to revert to Storyboard when returning w/ UW segue. So skip it...
          //cmdManageH.TitleLabel.Text = "Manage " + mGame.t[1].nick;
          //cmdManageV.TitleLabel.Text = "Manage " + mGame.t[0].nick; 
