@@ -27,7 +27,6 @@ namespace BCX.BCXB
          //leagueList = new List<string> { "NL2014", "AL2014", "NL2015", "AL2015" };
          //leagueList = GFileAccess.GetLeagueList ();
          yearList = GFileAccess.GetYearList();
-         activity1.Hidden = true;
 
       }
 
@@ -36,7 +35,8 @@ namespace BCX.BCXB
       // ----------------------------------
          base.ViewDidLoad ();
          // Perform any additional setup after loading the view, typically from a nib.
-            SetupPicker();
+         Activity1.Hidden = true;
+         SetupPicker();
       
       }
 
@@ -48,17 +48,18 @@ namespace BCX.BCXB
 
       }
 
-      public void StartActivity() {
 
-         activity1.Hidden = false;
-         activity1.StartAnimating();
+      public void StartActivity() {
+      // --------------------------------
+         Activity1.Hidden = false;
+         Activity1.StartAnimating();
       }
 
 
       public void StopActivity() {
-
-         activity1.StopAnimating();
-         activity1.Hidden = true;
+      // -------------------------------
+         Activity1.StopAnimating();
+         Activity1.Hidden = true;
 
       }
 
@@ -214,7 +215,8 @@ namespace BCX.BCXB
                         string yr = yearList[(int)row - 1];
                         //teamList = GFileAccess.GetTeamsInLeague(s, out usingDh);
                         teamList = await GFileAccess.GetTeamListForYearFromCache(int.Parse(yr));
-                     }
+                     } 
+                     picker.Select(0, 1, false); // Reset team to row 0
                      picker.ReloadComponent(1);
                      break;
                   case 1:

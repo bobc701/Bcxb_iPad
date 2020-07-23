@@ -16,7 +16,7 @@ namespace BCX.BCXB
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIActivityIndicatorView activity1 { get; set; }
+        UIKit.UIActivityIndicatorView Activity1 { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -32,9 +32,9 @@ namespace BCX.BCXB
 
         void ReleaseDesignerOutlets ()
         {
-            if (activity1 != null) {
-                activity1.Dispose ();
-                activity1 = null;
+            if (Activity1 != null) {
+                Activity1.Dispose ();
+                Activity1 = null;
             }
 
             if (cmdDone != null) {

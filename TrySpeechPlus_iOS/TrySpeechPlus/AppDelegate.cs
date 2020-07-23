@@ -1,5 +1,6 @@
 ﻿using Foundation;
 using UIKit;
+using System.Threading;
 
 namespace TrySpeechPlus
 {
@@ -26,6 +27,8 @@ namespace TrySpeechPlus
 			#if ENABLE_TEST_CLOUD
 			Xamarin.Calabash.Start();
 			#endif
+
+			Thread.Sleep(3000); // Delay to show splash longer
 
 			return true;
 		}

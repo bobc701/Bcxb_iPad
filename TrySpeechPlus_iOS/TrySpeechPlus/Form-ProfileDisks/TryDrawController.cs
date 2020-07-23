@@ -95,7 +95,7 @@ namespace BCX.BCXB
                break;
             case 2:
                s = string.Format(
-                  "rbi:{0}, bb:{1}, so{2}", 
+                  "rbi:{0}, bb:{1}, so:{2}", 
                   b.br.bi, b.br.bb, b.br.so);
                break;
          }

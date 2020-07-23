@@ -626,6 +626,7 @@ namespace BCX.BCXB {
          try {
             txtResults.Text = "Loading player stats. Please wait...";
             await SetupNewGame();
+
             txtResults.Text =
                "Tap 'Manage' buttons, above, to change starting lineups.\r\n" +
                "When done, tap 'Start' below.";
@@ -960,6 +961,7 @@ namespace BCX.BCXB {
       // --------------------------------------------------------------
          tblBoxScoreV.Hidden = (ab == 1);
          tblBoxScoreH.Hidden = (ab == 0);
+         segVisHome.SelectedSegment = ab; // 2.0.00
 
          //switch (ab) {
          //   case 0: tpgBV.Select(); tpgPH.Select(); tbcB.SelectTab("tpgBV"); break;
@@ -1274,14 +1276,16 @@ namespace BCX.BCXB {
 
 
       public void InitLinescore() {
-      // ---------------------------------------------------------
-      // This just blanks out the whole linescore, and posts inning
-      // numbers up to 9, or the current inning if more.
-      // 1706.23
-      
+         // ---------------------------------------------------------
+         // This just blanks out the whole linescore, and posts inning
+         // numbers up to 9, or the current inning if more.
+         // 1706.23
+
          for (int ab1= 0; ab1<=1; ab1++) {
             txtAbbrev[ab1].Text = mGame.t[ab1].lineName;
             for (int i=1; i<=12; i++) grdLinescore[ab1,i].Text = "";
+         // Ok not linescore, but box score segs... (2.0.00)
+            segVisHome.SetTitle(mGame.t[ab1].nick, ab1); 
          }
          for (int i = 1; i <= 12; i++) grdInning[i].Text = "";
 

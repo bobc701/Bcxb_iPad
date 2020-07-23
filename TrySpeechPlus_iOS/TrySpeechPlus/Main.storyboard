@@ -1484,7 +1484,7 @@
                         <outlet property="cmdDone" destination="1870" id="name-outlet-1870"/>
                         <outlet property="txtTeamH" destination="1863" id="name-outlet-1863"/>
                         <outlet property="txtTeamV" destination="1860" id="name-outlet-1860"/>
-                        <outlet property="activity1" destination="60030" id="name-outlet-60030"/>
+                        <outlet property="Activity1" destination="60030" id="name-outlet-60030"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="350" userLabel="First Responder" sceneMemberID="firstResponder"/>
