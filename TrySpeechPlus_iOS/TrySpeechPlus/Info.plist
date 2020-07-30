@@ -43,8 +43,8 @@
 	<key>UIRequiresFullScreen</key>
 	<true/>
 	<key>CFBundleVersion</key>
-	<string>2006</string>
+	<string>2008</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.0.00</string>
+	<string>2.0.01</string>
 </dict>
 </plist>

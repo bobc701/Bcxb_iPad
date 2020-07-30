@@ -34,9 +34,20 @@ namespace BCX.BCXCommon {
       private static string OrgName = "Zeemerix";
       private static string ProductName = "Zeemerix Baseball";
 
-   // Use httpS here as I have added SSL cert to Z.com on WinHost (7/15'20)...
-      private static HttpClient client = new HttpClient() { BaseAddress = new Uri("https://www.zeemerix.com") };
-      private static List<CTeamRecord> TeamCache = new List<CTeamRecord>();
+      internal static HttpClient client;
+      internal static List<CTeamRecord> TeamCache = new List<CTeamRecord>();
+
+
+      static GFileAccess() {
+      // --------------------------------------------------------------- static constructor
+      // Use httpS here as I have added SSL cert to Z.com on WinHost (7/15'20)...
+         client = new HttpClient() { BaseAddress = new Uri("https://www.zeemerix.com") };
+         client.DefaultRequestHeaders.Accept.Clear();
+         client.DefaultRequestHeaders.Accept.Add(
+             new MediaTypeWithQualityHeaderValue("application/json"));
+
+      }
+
 
 
 #if IOS
@@ -356,7 +367,7 @@ namespace BCX.BCXCommon {
          }
          else {
             teamList = null;
-            throw new Exception($"Error loading list of teams for {year}");
+            throw new Exception($"Error loading list of teams for {year}\r\nStatus code: {response.StatusCode}"); // 2.0.01
          }
          return teamList;
 
@@ -365,6 +376,7 @@ namespace BCX.BCXCommon {
       public static async Task<List<CTeamRecord>> GetTeamListForYearFromCache(int year) {
          // --------------------------------------------------------------------------------------
          List<CTeamRecord> result;
+         Debug.WriteLine($"TeamCache.Count at start of GetTeamListForYearFromCache: {TeamCache.Count}");
 
          result = TeamCache.Where(t => t.Year == year).ToList();
          if (result.Count > 0) {
@@ -388,7 +400,7 @@ namespace BCX.BCXCommon {
             }
             else {
                yearList10 = null;
-               throw new Exception($"Error loading list of teams for {year}");
+               throw new Exception($"Error loading list of teams for {year}\r\nStatus code: {response.StatusCode}");
             }
             TeamCache.AddRange(yearList10);
 
