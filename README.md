@@ -1,4 +1,6 @@
-# Bcxb_iPad_PAID
- Bcxb paid version for iPad
+# Bcxb_iPad
+ Xamarin iOS application for iPad.
  
-  This is a Xamarin iOS (not Forms) application.
+ To run production version:
+ Install Zeemerix PlayByPlay Baseball from Apple App Store on an 
+ iPad running iOS 12.1+.
