@@ -216,7 +216,7 @@ namespace BCX.BCXB
                         //teamList = GFileAccess.GetTeamsInLeague(s, out usingDh);
                         teamList = await GFileAccess.GetTeamListForYearFromCache(int.Parse(yr));
                      } 
-                     picker.Select(0, 1, false); // Reset team to row 0
+                     picker.Select(row: 0, component: 1, false); // Reset team to row 0
                      picker.ReloadComponent(1);
                      break;
                   case 1:
