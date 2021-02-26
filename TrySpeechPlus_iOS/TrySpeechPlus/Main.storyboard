@@ -2097,7 +2097,7 @@
                                     <action selector="cmdVisitSit_TouchUpInside:" destination="24065" eventType="touchUpInside" id="50135"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(c) 2019 Zeemerix Digital Solutions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49187">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(c) 2019, 2020 Zeemerix Digital Solutions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49187">
                                 <rect key="frame" x="237.5" y="856.5" width="359" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="49206"/>

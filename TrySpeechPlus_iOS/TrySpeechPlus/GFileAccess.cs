@@ -285,10 +285,10 @@ namespace BCX.BCXCommon {
 
       public static List<string> GetYearList() {
          // ---------------------------------------------------------
-         // For now, just return list from 2019 down to 1901.
+         // For now, just return list from 2020 down to 1901.
          // TODO: Enhance this to read the range from DB.
          // ---------------------------------------------------------
-         IEnumerable<string> list = Enumerable.Range(1901, 119).Reverse().Select(y => y.ToString());
+         IEnumerable<string> list = Enumerable.Range(1901, 120).Reverse().Select(y => y.ToString());
          return list.ToList();
 
       }
