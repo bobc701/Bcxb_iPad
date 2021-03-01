@@ -11,10 +11,11 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using BCX.BCXB;
 using System.Linq;
+using Foundation;
 
 namespace BCX.BCXCommon {
 
-   public static class GFileAccess {
+   public class GFileAccess {
       /* ---------------------------------------------------------------------
        * This serves up file objects for the rest of the app. It is anticipated 
        * that this will need to have a separate version for each platform.
@@ -38,20 +39,22 @@ namespace BCX.BCXCommon {
       //internal static List<CTeamRecord> TeamCache = new List<CTeamRecord>(); //Moved to BcxbDataAccess
 
 
-      static GFileAccess() {
+      public GFileAccess() {
       // --------------------------------------------------------------- static constructor
       // Use httpS here as I have added SSL cert to Z.com on WinHost (7/15'20)...
          client = new HttpClient() { BaseAddress = new Uri("https://www.zeemerix.com") };
          client.DefaultRequestHeaders.Accept.Clear();
          client.DefaultRequestHeaders.Accept.Add(
              new MediaTypeWithQualityHeaderValue("application/json"));
+         SetFolders(
+            NSBundle.MainBundle.BundlePath,
+            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
 
       }
 
 
-
 #if IOS
-      public static void SetFolders(string appRoot1, string docFolder1) {
+      public void SetFolders(string appRoot1, string docFolder1) {
          // ----------------------------------------------------------------
          // These need to be passed in since not available to the library...
          appRoot = appRoot1;
@@ -125,13 +128,12 @@ namespace BCX.BCXCommon {
 #endif
 
 
-      public static StreamReader GetModelFile(short engNum) {
+      public StreamReader GetModelFile(short engNum) {
          // ------------------------------------------------------------------
          // This returns a file object for CFEng1,2 oe 3.
          // ------------------------------------------------------------------
-         string path1 = Path.Combine(ModelFolder, "cfeng[1].bcx");
+         string path1 = Path.Combine(ModelFolder, $"cfeng{engNum}.bcx");
          try {
-            path1 = path1.Replace("[1]", engNum.ToString());
             StreamReader f = new StreamReader(path1);
             return f;
          }
@@ -141,6 +143,24 @@ namespace BCX.BCXCommon {
          }
 
       }
+
+
+      public StreamReader GetModelFile(string fName) {
+         // ------------------------------------------------------------------
+         // This returns a file object for CFEng1,2 oe 3.
+         // ------------------------------------------------------------------
+         string path1 = Path.Combine(ModelFolder, $"{fName}.bcx");
+         try {
+            StreamReader f = new StreamReader(path1);
+            return f;
+         }
+         catch (Exception ex) {
+            string msg = "Could not open " + path1 + "\r\nError: " + ex.Message;
+            throw new Exception(msg);
+         }
+
+      }
+
 
 
       /// <summary>

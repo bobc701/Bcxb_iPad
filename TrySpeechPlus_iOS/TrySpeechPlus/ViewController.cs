@@ -59,10 +59,10 @@ namespace BCX.BCXB {
 			var tts = new CTextToSpeach ();
          VersionTracking.Track(); // #2004.01
 
-
-         GFileAccess.SetFolders( 
-            NSBundle.MainBundle.BundlePath,
-            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+         // Moved to GFileAccess constructor, #b2102a
+         //GFileAccess.SetFolders( 
+         //   NSBundle.MainBundle.BundlePath,
+         //   Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
 
          mGame = new CGame(); 
 
@@ -200,42 +200,44 @@ namespace BCX.BCXB {
       // =================================
 
 
-         // These are the Stream fetching events. Needed because, while a PCL can 
-         // process Streams, it can't open one based on file name.
-         //
-         mGame.ERequestModelFile += delegate (short n) {
-         // --------------------------------------------------------------------
-            var rdr = GFileAccess.GetModelFile(n);
-            return rdr;
-         };
+         // These all out b2102a -- GFileAccess now called directly from CGame/CTeam.
 
-         mGame.ERequestEngineFile += delegate (string fName) {
-            // ------------------------------------------------------------------------
-            string enginePath = Path.Combine(GFileAccess.ModelFolder, fName.ToLower() + ".bcx");
-            //string enginePath = @"Model\" + fName;
-            if (!Directory.Exists(GFileAccess.ModelFolder)) throw new FileNotFoundException();
-            if (!File.Exists(enginePath)) throw new FileNotFoundException();
-            var rdr = new StreamReader(enginePath);
-            return rdr;
-         };
+         //// These are the Stream fetching events. Needed because, while a PCL can 
+         //// process Streams, it can't open one based on file name.
+         ////
+         //mGame.ERequestModelFile += delegate (short n) {
+         //// --------------------------------------------------------------------
+         //   var rdr = GFileAccess.GetModelFile(n);
+         //   return rdr;
+         //};
 
-         mGame.ERequestTeamFileReader += delegate (string fName) {
-            // --------------------------------------------------------------------
-            var rdr = GFileAccess.GetTeamFileReader(fName);
-            return rdr;
-         };
+         //mGame.ERequestEngineFile += delegate (string fName) {
+         //   // ------------------------------------------------------------------------
+         //   string enginePath = Path.Combine(GFileAccess.ModelFolder, fName.ToLower() + ".bcx");
+         //   //string enginePath = @"Model\" + fName;
+         //   if (!Directory.Exists(GFileAccess.ModelFolder)) throw new FileNotFoundException();
+         //   if (!File.Exists(enginePath)) throw new FileNotFoundException();
+         //   var rdr = new StreamReader(enginePath);
+         //   return rdr;
+         //};
 
-         mGame.ERequestTeamFileWriter += delegate (string fName) {
-            // --------------------------------------------------------------------
-            var rdr = GFileAccess.GetTeamFileWriter(fName);
-            return rdr;
-         };
+         //mGame.ERequestTeamFileReader += delegate (string fName) {
+         //   // --------------------------------------------------------------------
+         //   var rdr = GFileAccess.GetTeamFileReader(fName);
+         //   return rdr;
+         //};
 
-         mGame.ERequestBoxFileWriter += delegate (string fName) {
-            // --------------------------------------------------------------------
-            var rdr = new StreamWriter(fName);
-            return rdr; 
-         };
+         //mGame.ERequestTeamFileWriter += delegate (string fName) {
+         //   // --------------------------------------------------------------------
+         //   var rdr = GFileAccess.GetTeamFileWriter(fName);
+         //   return rdr;
+         //};
+
+         //mGame.ERequestBoxFileWriter += delegate (string fName) {
+         //   // --------------------------------------------------------------------
+         //   var rdr = new StreamWriter(fName);
+         //   return rdr; 
+         //};
 
 
          // Now that event handlers are instntiated, do this...
