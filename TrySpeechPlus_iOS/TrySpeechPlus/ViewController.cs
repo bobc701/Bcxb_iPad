@@ -14,6 +14,7 @@ using Xamarin.Essentials; // #2004.01 Version tracking
 using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Text;
+using BcxbDataAccess;
 
 namespace BCX.BCXB {
    
@@ -765,7 +766,7 @@ namespace BCX.BCXB {
          try {
             string tm = selectedTeams[1].TeamTag.Trim();
             int yr = selectedTeams[1].Year;
-            DTO_TeamRoster ros = await GFileAccess.GetTeamRosterOnLine(tm, yr);
+            DTO_TeamRoster ros = await DataAccess.GetTeamRosterOnLine(tm, yr); //Was GFileAccess -b2102a
             if (ros == null) throw new Exception($"Error: Could not load data for team, {fName1}");
             mGame.t[1].ReadTeam(ros, 1);
          }
@@ -776,7 +777,7 @@ namespace BCX.BCXB {
          try {
             string tm = selectedTeams[0].TeamTag.Trim();
             int yr = selectedTeams[0].Year;
-            DTO_TeamRoster ros = await GFileAccess.GetTeamRosterOnLine(tm, yr);
+            DTO_TeamRoster ros = await DataAccess.GetTeamRosterOnLine(tm, yr);  //Was GFileAccess -b2102a
             if (ros == null) throw new Exception($"Error: Could not load data for team, {fName0}");
             mGame.t[0].ReadTeam(ros, 0);
          }

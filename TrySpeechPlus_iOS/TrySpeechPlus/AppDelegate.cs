@@ -11,6 +11,8 @@ using System.Runtime.CompilerServices;
 using System.Timers;
 using System.Diagnostics;
 
+using BcxbDataAccess;
+
 namespace TrySpeechPlus
 {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
@@ -39,7 +41,7 @@ namespace TrySpeechPlus
 
 	      PrimeTeamCache(); // We can't await this because overridden method is not async.
 			Thread.Sleep(4500); // Delay to show splash longer
-			Debug.WriteLine($"TeamCache.Count after FinishedLaunching: {GFileAccess.TeamCache.Count}");
+			Debug.WriteLine($"TeamCache.Count after FinishedLaunching: {DataAccess.TeamCache.Count}");
 			return true;
 
 		}
@@ -54,15 +56,15 @@ namespace TrySpeechPlus
 			try {
 				var url = new System.Uri(GFileAccess.client.BaseAddress, $"liveteamrdr/api/team-list/2010/2020");
 
-				List<BCX.BCXCommon.CTeamRecord> yearList10;
+				List<CTeamRecord> yearList10;
 				HttpResponseMessage response = await GFileAccess.client.GetAsync(url.ToString());
 				if (response.IsSuccessStatusCode) {
-					yearList10 = await response.Content.ReadAsAsync<List<BCX.BCXCommon.CTeamRecord>>();
+					yearList10 = await response.Content.ReadAsAsync<List<CTeamRecord>>();
 				}
 				else {
 					throw new Exception($"Error loading initial list of teams\r\nStatus code: {response.StatusCode}");
 				}
-				GFileAccess.TeamCache.AddRange(yearList10);
+				DataAccess.TeamCache.AddRange(yearList10);
 			}
 			catch (Exception ex) {
 			// Just do nothing here. Can't show error dialog.

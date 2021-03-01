@@ -43,6 +43,7 @@
     <CodesignExtraArgs />
     <CodesignResourceRules />
     <CodesignEntitlements />
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -62,6 +63,7 @@
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <MtouchFloat32>true</MtouchFloat32>
     <OptimizePNGs>true</OptimizePNGs>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -75,6 +77,7 @@
     <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;IOS</DefineConstants>
     <CodesignKey>iPhone Distribution: Robert Clemens (7B2Q2QFBAK)</CodesignKey>
     <CodesignProvision>Zeemerix Distrib 1</CodesignProvision>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -91,6 +94,7 @@
     <CodesignKey>iPhone Developer: Robert Clemens (WK5Q9P6NPL)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignProvision>Zeemerix Profile 2</CodesignProvision>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />
@@ -321,6 +325,12 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\victorino4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BcxbLib_SAP\BcxbDataAccess\BcxbDataAccess.csproj">
+      <Project>{80a65793-0719-4a4d-b2eb-0318afa70754}</Project>
+      <Name>BcxbDataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\..\..\..\BcxbLib_SAP\BcxbLib_SAP_b1_cteam\BcxbLib_SAP.projitems" Label="Shared" />
   <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />

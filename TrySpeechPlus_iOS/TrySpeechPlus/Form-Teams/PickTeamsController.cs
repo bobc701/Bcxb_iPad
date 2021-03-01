@@ -4,6 +4,7 @@ using System.CodeDom.Compiler;
 using UIKit;
 using System.Collections.Generic;
 using BCX.BCXCommon;
+using BcxbDataAccess;
 
 
 namespace BCX.BCXB
@@ -44,7 +45,7 @@ namespace BCX.BCXB
       public override void ViewDidDisappear(bool animated) {
       // ---------------------------------------------------------
          base.ViewDidDisappear(animated);
-         GFileAccess.ClearTeamCache();
+         DataAccess.ClearTeamCache();
 
       }
 
@@ -214,7 +215,7 @@ namespace BCX.BCXB
                      else {
                         string yr = yearList[(int)row - 1];
                         //teamList = GFileAccess.GetTeamsInLeague(s, out usingDh);
-                        teamList = await GFileAccess.GetTeamListForYearFromCache(int.Parse(yr));
+                        teamList = await DataAccess.GetTeamListForYearFromCache(int.Parse(yr));
                      } 
                      picker.Select(row: 0, component: 1, false); // Reset team to row 0
                      picker.ReloadComponent(1);
